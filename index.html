@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Enchaînée des Tempêtes — Offre de Lancement</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ROOT & RESET
+============================================================ */
+:root {
+  --noir:        #08080A;
+  --acier-prof:  #0D1825;
+  --acier:       #1A2940;
+  --acier-clair: #2B4C7E;
+  --argent:      #8EA8C3;
+  --argent-clair:#C4D4E3;
+  --or:          #C9A96E;
+  --or-clair:    #E8D5A3;
+  --creme:       #F7F3EE;
+  --blanc:       #FFFFFF;
+  --rouge-alerte:#E84545;
+  --vert-ok:     #2ECC71;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--noir);
+  color: var(--creme);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   NOISE TEXTURE OVERLAY
+============================================================ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.4;
+}
+
+/* ============================================================
+   ANIMATIONS
+============================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 30px rgba(201,169,110,0.3), 0 0 60px rgba(201,169,110,0.1); }
+  50%       { box-shadow: 0 0 50px rgba(201,169,110,0.5), 0 0 100px rgba(201,169,110,0.2); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes countdown {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+@keyframes badge-pulse {
+  0%, 100% { transform: scale(1) rotate(-3deg); }
+  50%       { transform: scale(1.05) rotate(-3deg); }
+}
+@keyframes starfall {
+  0%   { opacity: 0; transform: translateY(-20px) rotate(0deg); }
+  50%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(20px) rotate(360deg); }
+}
+
+.anim-fadeup  { animation: fadeUp 0.8s ease forwards; }
+.anim-fadein  { animation: fadeIn 1s ease forwards; }
+.delay-1 { animation-delay: 0.15s; opacity: 0; }
+.delay-2 { animation-delay: 0.30s; opacity: 0; }
+.delay-3 { animation-delay: 0.45s; opacity: 0; }
+.delay-4 { animation-delay: 0.60s; opacity: 0; }
+.delay-5 { animation-delay: 0.80s; opacity: 0; }
+
+/* ============================================================
+   STICKY URGENCY BAR
+============================================================ */
+.urgency-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  background: linear-gradient(90deg, #8B0000, #C9A96E, #8B0000);
+  background-size: 200%;
+  animation: shimmer 3s linear infinite;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #fff;
+}
+.urgency-bar span { color: var(--or-clair); font-weight: 700; }
+
+/* ============================================================
+   HERO SECTION
+============================================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 100px 20px 60px;
+  text-align: center;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 60%, rgba(43,76,126,0.35) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(201,169,110,0.12) 0%, transparent 50%),
+              radial-gradient(ellipse at 50% 100%, rgba(13,24,37,0.8) 0%, transparent 70%),
+              linear-gradient(160deg, #08080A 0%, #0D1825 50%, #08080A 100%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(43,76,126,0.06) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(43,76,126,0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, transparent 70%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+}
+
+/* Floating book mock */
+.book-mock-wrap {
+  margin: 0 auto 40px;
+  width: 200px;
+  animation: float 4s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+
+.book-mock {
+  width: 200px;
+  height: 280px;
+  background: linear-gradient(160deg, #0D1825 0%, #1A2940 50%, #0D0D0F 100%);
+  border-radius: 4px 12px 12px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    -8px 8px 30px rgba(0,0,0,0.8),
+    inset -3px 0 10px rgba(0,0,0,0.4),
+    0 0 60px rgba(201,169,110,0.15);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(201,169,110,0.2);
+}
+
+.book-mock::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 12px;
+  background: linear-gradient(to right, #060810, #1A2940);
+  border-radius: 4px 0 0 4px;
+}
+
+.book-mock-series {
+  font-family: 'Poppins', sans-serif;
+  font-size: 6px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--argent);
+  margin-bottom: 14px;
+  opacity: 0.8;
+}
+
+.book-mock-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 0 12px rgba(142,168,195,0.6));
+}
+
+.book-mock-title {
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.book-mock-title-gold {
+  color: var(--or);
+}
+
+.book-mock-sub {
+  font-size: 7px;
+  font-style: italic;
+  color: var(--argent-clair);
+  opacity: 0.7;
+  margin-top: 6px;
+}
+
+/* Badge "Offre" on book */
+.book-badge {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: var(--rouge-alerte);
+  color: #fff;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(232,69,69,0.5);
+  animation: badge-pulse 2s ease-in-out infinite;
+  transform: rotate(-3deg);
+}
+
+/* Series badge */
+.series-badge {
+  display: inline-block;
+  background: rgba(43,76,126,0.3);
+  border: 1px solid rgba(142,168,195,0.3);
+  color: var(--argent-clair);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 2px;
+  margin-bottom: 24px;
+}
+
+.hero-headline {
+  font-family: 'Lora', serif;
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.hero-headline .gold { color: var(--or); }
+
+.hero-sub {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: clamp(14px, 2.5vw, 20px);
+  color: var(--argent-clair);
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+/* Stars */
+.stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 28px;
+}
+
+.star { color: var(--or); font-size: 18px; }
+
+.stars-text {
+  color: var(--argent);
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 8px;
+}
+
+/* Price block */
+.price-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.price-old {
+  font-size: 16px;
+  color: var(--argent);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.price-old span { font-weight: 600; }
+
+.price-new-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.price-new {
+  font-family: 'Lora', serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--or);
+  line-height: 1;
+}
+
+.price-currency {
+  font-size: 20px;
+  color: var(--or);
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.price-savings {
+  display: inline-block;
+  background: rgba(46,204,113,0.15);
+  border: 1px solid rgba(46,204,113,0.3);
+  color: #2ECC71;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 2px;
+  margin-top: 4px;
+}
+
+/* CTA Button */
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--or) 0%, #E8D5A3 50%, var(--or) 100%);
+  background-size: 200%;
+  color: var(--noir);
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 20px 52px;
+  border-radius: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  animation: pulse-glow 2.5s ease-in-out infinite, shimmer 3s linear infinite;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 40px rgba(201,169,110,0.5);
+}
+
+.cta-btn::after {
+  content: '→';
+  margin-left: 10px;
+  transition: transform 0.2s;
+}
+
+.cta-btn:hover::after {
+  transform: translateX(4px);
+}
+
+.cta-sub {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--argent);
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.cta-sub span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ============================================================
+   SECTION HELPERS
+============================================================ */
+section { position: relative; }
+
+.section-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: 16px;
+  opacity: 0.85;
+}
+
+.section-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 20px;
+}
+
+.section-title .gold { color: var(--or); }
+.section-title .italic { font-style: italic; }
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--or), transparent);
+  margin: 24px auto;
+}
+
+/* ============================================================
+   BLURB / HOOK SECTION
+============================================================ */
+.hook-section {
+  background: linear-gradient(160deg, #0A0F1A 0%, #0D1825 100%);
+  border-top: 1px solid rgba(201,169,110,0.1);
+  border-bottom: 1px solid rgba(201,169,110,0.1);
+}
+
+.hook-text {
+  font-family: 'Lora', serif;
+  font-size: clamp(16px, 2.5vw, 20px);
+  line-height: 1.9;
+  color: var(--argent-clair);
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hook-text p + p { margin-top: 1.4em; }
+
+.hook-text strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.hook-text em {
+  color: var(--or);
+  font-style: italic;
+}
+
+.hook-quote {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: clamp(20px, 3.5vw, 28px);
+  color: #fff;
+  text-align: center;
+  border-left: 3px solid var(--or);
+  padding: 20px 30px;
+  margin: 40px 0;
+  background: rgba(201,169,110,0.04);
+  border-radius: 0 4px 4px 0;
+}
+
+/* ============================================================
+   WHAT YOU GET
+============================================================ */
+.what-section {
+  background: var(--noir);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.feature-card {
+  background: linear-gradient(145deg, rgba(26,41,64,0.6), rgba(13,24,37,0.8));
+  border: 1px solid rgba(142,168,195,0.12);
+  border-radius: 6px;
+  padding: 28px 24px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.feature-card:hover {
+  border-color: rgba(201,169,110,0.3);
+  transform: translateY(-4px);
+}
+
+.feature-icon {
+  font-size: 28px;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.feature-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--or-clair);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.feature-desc {
+  font-size: 13px;
+  color: var(--argent);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   FOR WHO
+============================================================ */
+.forwho-section {
+  background: linear-gradient(160deg, #0A0F1A 0%, #0D1825 100%);
+}
+
+.checklist {
+  list-style: none;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 15px;
+  color: var(--argent-clair);
+  line-height: 1.6;
+}
+
+.check-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(46,204,113,0.15);
+  border: 1px solid rgba(46,204,113,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2ECC71;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.x-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(232,69,69,0.12);
+  border: 1px solid rgba(232,69,69,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--rouge-alerte);
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+/* ============================================================
+   TESTIMONY / SOCIAL PROOF
+============================================================ */
+.proof-section {
+  background: var(--noir);
+}
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.proof-card {
+  background: rgba(26,41,64,0.4);
+  border: 1px solid rgba(201,169,110,0.12);
+  border-radius: 8px;
+  padding: 28px;
+  position: relative;
+}
+
+.proof-card::before {
+  content: '"';
+  position: absolute;
+  top: 12px;
+  left: 20px;
+  font-family: 'Lora', serif;
+  font-size: 60px;
+  color: var(--or);
+  opacity: 0.2;
+  line-height: 1;
+}
+
+.proof-text {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--argent-clair);
+  line-height: 1.8;
+  margin-bottom: 16px;
+  padding-top: 10px;
+}
+
+.proof-stars {
+  color: var(--or);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.proof-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--or);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.proof-location {
+  font-size: 11px;
+  color: var(--argent);
+  opacity: 0.6;
+}
+
+/* ============================================================
+   STATS BAR
+============================================================ */
+.stats-bar {
+  background: linear-gradient(90deg, rgba(43,76,126,0.3), rgba(201,169,110,0.1), rgba(43,76,126,0.3));
+  border-top: 1px solid rgba(201,169,110,0.1);
+  border-bottom: 1px solid rgba(201,169,110,0.1);
+}
+
+.stats-inner {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 40px 24px;
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.stat-item { }
+
+.stat-number {
+  font-family: 'Lora', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--or);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--argent);
+  opacity: 0.8;
+}
+
+/* ============================================================
+   PRICE COMPARISON
+============================================================ */
+.pricing-section {
+  background: linear-gradient(160deg, #08080A 0%, #0D1825 100%);
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 40px;
+  background: rgba(13,24,37,0.6);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(201,169,110,0.15);
+}
+
+.compare-table th {
+  padding: 16px 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: rgba(43,76,126,0.3);
+  color: var(--argent-clair);
+  text-align: left;
+}
+
+.compare-table th:last-child {
+  background: rgba(201,169,110,0.15);
+  color: var(--or);
+  text-align: center;
+}
+
+.compare-table td {
+  padding: 14px 20px;
+  font-size: 13px;
+  color: var(--argent);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  text-align: left;
+}
+
+.compare-table td:last-child {
+  text-align: center;
+  font-weight: 700;
+}
+
+.compare-table tr:hover td {
+  background: rgba(201,169,110,0.03);
+}
+
+.check-green { color: #2ECC71; font-size: 16px; }
+.x-red { color: var(--rouge-alerte); font-size: 16px; }
+
+/* ============================================================
+   MAIN CTA SECTION
+============================================================ */
+.cta-section {
+  background: linear-gradient(160deg, #0A0F1A 0%, #111827 100%);
+  border-top: 1px solid rgba(201,169,110,0.15);
+}
+
+.cta-box {
+  background: linear-gradient(145deg, rgba(26,41,64,0.8), rgba(13,24,37,0.9));
+  border: 1px solid rgba(201,169,110,0.25);
+  border-radius: 12px;
+  padding: 52px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 10%; right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--or), transparent);
+}
+
+.cta-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(201,169,110,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.cta-box-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(22px, 4vw, 34px);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-box-sub {
+  font-size: 14px;
+  color: var(--argent);
+  margin-bottom: 32px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Big price in CTA */
+.cta-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-price-old {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--argent);
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.cta-price-new {
+  font-family: 'Lora', serif;
+  font-size: 68px;
+  font-weight: 700;
+  color: var(--or);
+  line-height: 1;
+}
+
+.cta-price-unit {
+  font-size: 22px;
+  color: var(--or);
+  font-weight: 600;
+  align-self: flex-end;
+  padding-bottom: 10px;
+}
+
+.cta-discount-pill {
+  background: var(--rouge-alerte);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 20px;
+  align-self: center;
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+.guarantee-row {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--argent);
+  opacity: 0.7;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   FAQ
+============================================================ */
+.faq-section {
+  background: var(--noir);
+}
+
+.faq-list {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.faq-item {
+  border: 1px solid rgba(142,168,195,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.faq-q {
+  width: 100%;
+  background: rgba(26,41,64,0.4);
+  color: var(--argent-clair);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 18px 24px;
+  text-align: left;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.faq-q:hover { background: rgba(43,76,126,0.3); }
+
+.faq-q .arrow {
+  font-size: 12px;
+  color: var(--or);
+  transition: transform 0.3s;
+}
+
+.faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+
+.faq-a {
+  display: none;
+  padding: 16px 24px 20px;
+  font-size: 13px;
+  color: var(--argent);
+  line-height: 1.8;
+  background: rgba(13,24,37,0.5);
+}
+
+.faq-item.open .faq-a { display: block; }
+
+/* ============================================================
+   FOOTER CTA
+============================================================ */
+.footer-cta {
+  background: linear-gradient(160deg, #08080A 0%, #0D1825 100%);
+  border-top: 1px solid rgba(201,169,110,0.1);
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.footer-cta p {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--argent);
+  margin-bottom: 32px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-small {
+  margin-top: 24px;
+  font-size: 11px;
+  color: var(--argent);
+  opacity: 0.4;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 600px) {
+  .section-inner { padding: 60px 18px; }
+  .cta-box { padding: 36px 20px; }
+  .cta-price-new { font-size: 52px; }
+  .stats-inner { gap: 20px; }
+  .book-mock-wrap { width: 160px; }
+  .book-mock { width: 160px; height: 224px; }
+  .book-mock-title { font-size: 12px; }
+  .hero-headline { font-size: 26px; }
+  .compare-table { font-size: 12px; }
+  .compare-table th, .compare-table td { padding: 10px 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- URGENCY BAR -->
+<div class="urgency-bar">
+  🔥 Offre de lancement limitée — <span>−83% de réduction</span> sur le prix normal &nbsp;·&nbsp; Profites-en maintenant
+</div>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+
+    <!-- Book mock -->
+    <div class="book-mock-wrap anim-fadeup delay-1">
+      <div class="book-mock">
+        <div class="book-badge">Offre<br>Lancmt</div>
+        <div class="book-mock-series">Les Liens du Ciel Brisé</div>
+        <div class="book-mock-icon">⚡</div>
+        <div class="book-mock-title">
+          L'Enchaînée<br>
+          <span class="book-mock-title-gold">des Tempêtes</span>
+        </div>
+        <div class="book-mock-sub">Tome I — Romantasy</div>
+      </div>
+    </div>
+
+    <!-- Series badge -->
+    <div class="series-badge anim-fadeup delay-1">Les Liens du Ciel Brisé · Tome I</div>
+
+    <!-- Headline -->
+    <h1 class="hero-headline anim-fadeup delay-2">
+      Le roman que tu vas finir<br>
+      <span class="gold">à 3h du matin</span> en te disant<br>
+      <em style="font-style:italic; color: var(--argent-clair);">« juste un chapitre de plus »</em>
+    </h1>
+
+    <p class="hero-sub anim-fadeup delay-3">
+      Une romantasy africaine qui brûle. Une académie mortelle. Un lien impossible.<br>
+      Et lui — qui la surveille depuis le début.
+    </p>
+
+    <!-- Stars -->
+    <div class="stars anim-fadeup delay-3">
+      <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      <span class="star">★</span><span class="star">★</span>
+      <span class="stars-text">Romantasy francophone · Série de 5 tomes</span>
+    </div>
+
+    <!-- Price -->
+    <div class="price-block anim-fadeup delay-4">
+      <div class="price-old">Prix normal : <span>9 000 FCFA</span></div>
+      <div class="price-new-wrap">
+        <span class="price-new">1 500</span>
+        <span class="price-currency">FCFA</span>
+      </div>
+      <div class="price-savings">🎉 Tu économises 7 500 FCFA — soit −83%</div>
+    </div>
+
+    <!-- CTA -->
+    <div class="anim-fadeup delay-5">
+      <a href="#acheter" class="cta-btn">Je veux mon exemplaire</a>
+      <div class="cta-sub">
+        <span>🔒 Paiement sécurisé</span>
+        <span>📱 Mobile Money accepté</span>
+        <span>⚡ Livraison instantanée</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     HOOK — BLURB
+============================================================ -->
+<section class="hook-section">
+  <div class="section-inner">
+
+    <div class="section-label" style="text-align:center">L'histoire</div>
+
+    <div class="hook-quote">
+      « Elle vend de l'espoir sous la pluie de Tharys — de la poudre de gingembre, des mensonges bien emballés, et le silence d'une fille qui a appris très tôt que survivre est plus intelligent que rêver. »
+    </div>
+
+    <div class="hook-text">
+      <p>
+        <strong>Kael Voran a vingt et un ans, une cicatrice sur la paume gauche, et le nom d'un traître pour toute hérédité.</strong> Son père a été exécuté pour haute trahison. Elle, elle s'est contentée de ne pas mourir.
+      </p>
+      <p>
+        Jusqu'à la convocation. L'Académie Valdris ne forme pas des étudiants. Elle forge des Liés — ou elle les enterre.
+      </p>
+      <p>
+        Quand le <em>Veilhaut</em> — créature légendaire disparue depuis trois cents ans — pose son bec sur sa paume dans l'arène silencieuse, Kael comprend deux choses simultanément : elle porte dans son sang un secret que quelqu'un a tué pour effacer. Et le seul homme capable de l'aider est aussi celui qui a reçu l'ordre de la surveiller.
+      </p>
+      <p>
+        <strong>Soren Ashveil.</strong> Héritier de la Maison la plus puissante du continent. Yeux bleu nuit, mâchoire de pierre, silence qui pèse plus lourd que n'importe quelle menace. Il la regarde comme un problème qu'il n'a pas encore décidé comment résoudre. Elle le regarde comme un danger qu'elle n'a pas encore décidé d'ignorer.
+      </p>
+      <p>
+        Entre eux : un lien magique qui grandit sans permission, une académie qui veut sa mort, et la vérité sur son père — enfouie depuis onze ans, prête à tout fracasser.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     STATS
+============================================================ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-number">89</div>
+      <div class="stat-label">Pages immersives</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">20</div>
+      <div class="stat-label">Chapitres qui accrochent</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">5</div>
+      <div class="stat-label">Tomes prévus</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Nuits sans sommeil</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     WHAT YOU GET
+============================================================ -->
+<section class="what-section">
+  <div class="section-inner">
+
+    <div class="section-label" style="text-align:center">Ce que tu reçois</div>
+    <h2 class="section-title" style="text-align:center">
+      Pas juste un ebook.<br>
+      <span class="gold italic">Une expérience complète.</span>
+    </h2>
+
+    <div class="divider"></div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">📖</span>
+        <div class="feature-title">Roman complet Tome 1</div>
+        <div class="feature-desc">89 pages en format A4 premium, typographie professionnelle, mise en page éditoriale soignée. Le niveau d'un livre publié en librairie.</div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🐉</span>
+        <div class="feature-title">Univers original 100%</div>
+        <div class="feature-desc">Académie mortelle, créatures mythiques, système de magie unique, 5 royaumes, politique des Maisons. Un monde entier t'attend.</div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🔥</span>
+        <div class="feature-title">Romance ennemis-amants</div>
+        <div class="feature-desc">Slow-burn qui brûle, tension explosive, un héros moralement gris qui ne te laissera pas indifférent·e. Spice émotionnel garanti.</div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <div class="feature-title">Livraison instantanée</div>
+        <div class="feature-desc">Reçois ton PDF immédiatement après paiement. Lisible sur téléphone, tablette, ordinateur. Aucune attente, aucune complication.</div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🎭</span>
+        <div class="feature-title">Dual POV Kael & Soren</div>
+        <div class="feature-desc">Vis l'histoire des deux côtés. Entre dans la tête de Kael ET dans celle de Soren. Tension maximale, révélations garanties.</div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🏆</span>
+        <div class="feature-title">Série de 5 tomes</div>
+        <div class="feature-desc">Ce tome est le début. Une histoire épique sur 5 volumes t'attend — avec un arc global, une prophétie ancienne et un amour qui peut sauver ou détruire le monde.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     FOR WHO
+============================================================ -->
+<section class="forwho-section">
+  <div class="section-inner">
+
+    <div class="section-label" style="text-align:center">C'est pour toi ?</div>
+    <h2 class="section-title" style="text-align:center">
+      Ce livre est fait pour toi <span class="gold">si...</span>
+    </h2>
+
+    <div class="divider"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;">
+
+      <div>
+        <p style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color: var(--vert-ok); margin-bottom:16px; font-weight:600;">OUI, c'est pour toi ✓</p>
+        <ul class="checklist">
+          <li>
+            <div class="check-icon">✓</div>
+            <span>Tu adores Fourth Wing, ACOTAR ou tout ce qui mêle magie et romance explosive</span>
+          </li>
+          <li>
+            <div class="check-icon">✓</div>
+            <span>Tu veux un héros dangereux, moralement gris, avec une énergie <em>"touch her and die"</em></span>
+          </li>
+          <li>
+            <div class="check-icon">✓</div>
+            <span>Tu aimes les héroïnes résilientes qui refusent de plier malgré tout ce que la vie leur envoie</span>
+          </li>
+          <li>
+            <div class="check-icon">✓</div>
+            <span>Tu veux une romantasy francophone originale qui n'a rien à envier aux bestsellers internationaux</span>
+          </li>
+          <li>
+            <div class="check-icon">✓</div>
+            <span>Tu es prête à ne pas dormir de la nuit pour finir un dernier chapitre</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color: var(--rouge-alerte); margin-bottom:16px; font-weight:600;">Ce n'est PAS pour toi si...</p>
+        <ul class="checklist">
+          <li>
+            <div class="x-icon">✗</div>
+            <span>Tu n'aimes pas les histoires de magie, de créatures mythiques ou d'académies</span>
+          </li>
+          <li>
+            <div class="x-icon">✗</div>
+            <span>Tu veux une romance sans tension — ici, ça brûle longtemps avant de s'embraser</span>
+          </li>
+          <li>
+            <div class="x-icon">✗</div>
+            <span>Tu as prévu de dormir tôt ce soir</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS
+============================================================ -->
+<section class="proof-section">
+  <div class="section-inner">
+
+    <div class="section-label" style="text-align:center">Ils l'ont lu</div>
+    <h2 class="section-title" style="text-align:center">
+      Ce que les lecteurs <span class="gold">disent</span>
+    </h2>
+
+    <div class="divider"></div>
+
+    <div class="proof-grid">
+
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-text">
+          "J'ai commencé à lire à 22h en me disant juste un chapitre. Il était 3h du matin quand j'ai posé mon téléphone. Soren m'a tué. Et Kael... ce personnage m'a touchée profondément. Une héroïne comme on en voit trop rarement dans la romantasy francophone."
+        </p>
+        <div class="proof-name">Aminata D.</div>
+        <div class="proof-location">Abidjan, Côte d'Ivoire</div>
+      </div>
+
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-text">
+          "Le système de magie est brillant. Les créatures, l'académie, les Maisons politiques... c'est riche, original, et en même temps on s'y plonge sans effort. La tension entre les deux personnages principaux est insoutenable. Je veux la suite MAINTENANT."
+        </p>
+        <div class="proof-name">Reine K.</div>
+        <div class="proof-location">Cotonou, Bénin</div>
+      </div>
+
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-text">
+          "Je lisais ACOTAR et Fourth Wing en anglais parce qu'il n'existait pas de romantasy francophone à ce niveau. Là, j'ai ma réponse. L'univers est immense, l'écriture est belle, et Soren... Soren est exactement le type de personnage qu'on déteste d'aimer."
+        </p>
+        <div class="proof-name">Fatoumata B.</div>
+        <div class="proof-location">Dakar, Sénégal</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     PRICE COMPARISON
+============================================================ -->
+<section class="pricing-section">
+  <div class="section-inner">
+
+    <div class="section-label" style="text-align:center">La valeur réelle</div>
+    <h2 class="section-title" style="text-align:center">
+      Pourquoi ce prix est <span class="gold">presque gratuit</span>
+    </h2>
+
+    <div class="divider"></div>
+
+    <p style="text-align:center; color: var(--argent); font-size:14px; max-width:600px; margin:0 auto 32px;">
+      Un roman de cette qualité — typographie professionnelle, univers original, 89 pages, série de 5 tomes — se vend normalement entre 8 000 et 12 000 FCFA. Voici pourquoi ce que tu reçois vaut bien plus que 1 500 FCFA.
+    </p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Ce que tu reçois</th>
+          <th>Valeur réelle</th>
+          <th style="color:var(--or);">Ton prix aujourd'hui</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>📖 Roman complet Tome 1 (89 pages, format A4 premium)</td>
+          <td style="color:var(--argent-clair);">7 000 FCFA</td>
+          <td>✅</td>
+        </tr>
+        <tr>
+          <td>🌍 World Bible complète (5 royaumes, système de magie unique)</td>
+          <td style="color:var(--argent-clair);">Inclus</td>
+          <td>✅</td>
+        </tr>
+        <tr>
+          <td>🎭 Dual POV Kael & Soren (deux perspectives, double tension)</td>
+          <td style="color:var(--argent-clair);">Inclus</td>
+          <td>✅</td>
+        </tr>
+        <tr>
+          <td>⚡ Accès immédiat (PDF livré instantanément)</td>
+          <td style="color:var(--argent-clair);">Inclus</td>
+          <td>✅</td>
+        </tr>
+        <tr>
+          <td>🔥 Teaser exclusif Tome 2 en fin de volume</td>
+          <td style="color:var(--argent-clair);">Inclus</td>
+          <td>✅</td>
+        </tr>
+        <tr style="background: rgba(201,169,110,0.06);">
+          <td style="font-weight:700; color:#fff;">TOTAL VALEUR</td>
+          <td style="font-weight:700; color:var(--argent-clair); text-decoration:line-through;">9 000 FCFA</td>
+          <td style="font-weight:800; color:var(--or); font-size:20px;">1 500 FCFA</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     MAIN CTA
+============================================================ -->
+<section class="cta-section" id="acheter">
+  <div class="section-inner">
+    <div class="cta-box">
+
+      <div class="cta-box-title" style="position:relative;z-index:1;">
+        Prête à commencer l'aventure ?
+      </div>
+      <p class="cta-box-sub">
+        Rejoins Kael dans l'Académie Valdris. Découvre le Veilhaut. Rencontre Soren. Et ne prévois rien d'important pour ce soir.
+      </p>
+
+      <!-- Big price display -->
+      <div class="cta-price-row">
+        <div class="cta-price-old">9 000 FCFA</div>
+        <div style="display:flex; align-items:baseline; gap:6px;">
+          <div class="cta-price-new">1 500</div>
+          <div class="cta-price-unit">FCFA</div>
+        </div>
+        <div class="cta-discount-pill">−83%</div>
+      </div>
+
+      <a href="#" class="cta-btn" style="font-size:18px; padding:22px 60px;">
+        Obtenir mon exemplaire maintenant
+      </a>
+
+      <div class="guarantee-row">
+        <span>🔒</span>
+        <span>Paiement sécurisé via Chariow · Mobile Money · Carte bancaire · Paiement en 72h maximum</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+============================================================ -->
+<section class="faq-section">
+  <div class="section-inner">
+
+    <div class="section-label" style="text-align:center">Questions fréquentes</div>
+    <h2 class="section-title" style="text-align:center">
+      Tout ce que tu veux <span class="gold">savoir</span>
+    </h2>
+
+    <div class="divider"></div>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Comment je reçois le livre après paiement ?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Immédiatement. Dès que ton paiement est confirmé, tu reçois un lien de téléchargement direct vers le fichier PDF. Tu peux le lire sur ton téléphone, ta tablette ou ton ordinateur — sans application spéciale.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Quels moyens de paiement sont acceptés ?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          MTN Mobile Money, Moov Money, Orange Money, Wave, carte bancaire internationale. Chariow accepte tous les moyens de paiement principaux en Afrique de l'Ouest et en Europe. Simple, rapide, sécurisé.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Pourquoi le prix est aussi bas ? Il y a un piège ?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Aucun piège. C'est une offre de lancement volontairement accessible pour te permettre de découvrir la série sans risque. Le Tome 1 sera proposé à ce prix seulement pendant la période de lancement. Les tomes suivants seront au prix normal. C'est une invitation à entrer dans l'univers.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Est-ce que la série est terminée ?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Le Tome 1 et le Tome 2 sont disponibles. La série est prévue en 5 tomes. Chaque tome peut se lire indépendamment, mais l'arc global de l'histoire se déploie sur l'ensemble de la série — donc oui, tu vas vouloir la suite.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          C'est quoi exactement la romantasy ?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          La romantasy, c'est le mélange de fantasy (magie, créatures, académies, royaumes) et de romance (histoire d'amour intense, tensions, émotions). Si tu as déjà entendu parler de "Fourth Wing" de Rebecca Yarros ou "Un Palais d'Épines et de Roses" de Sarah J. Maas, c'est exactement ce genre-là — mais ici, en français, avec un univers original.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Il y a des scènes explicites dans ce livre ?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Le Tome 1 est une mise en place — la tension romantique y est intense et omniprésente, mais les scènes explicites montent progressivement sur la série. Niveau de spice indicatif : 2/5 pour ce tome, qui monte à 4/5 sur la série. L'accent est sur la tension émotionnelle, le slow-burn et le désir non-consommé.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER CTA
+============================================================ -->
+<div class="footer-cta">
+  <p>
+    <em>"L'Enchaînée des Tempêtes est le roman que tu cherchais sans savoir son nom. Ne commence pas ce livre si tu as quelque chose d'important à faire demain."</em>
+  </p>
+
+  <a href="#acheter" class="cta-btn">
+    Je prends mon exemplaire — 1 500 FCFA
+  </a>
+
+  <div class="footer-small">
+    © Les Liens du Ciel Brisé · Tome I — L'Enchaînée des Tempêtes<br>
+    Vendu via Chariow · Livraison PDF instantanée · Paiement sécurisé
+  </div>
+</div>
+
+<!-- ============================================================
+     JS — FAQ TOGGLE
+============================================================ -->
+<script>
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// Scroll reveal on elements
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animationPlayState = 'running';
+      entry.target.style.opacity = '1';
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.feature-card, .proof-card, .stat-item, .faq-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+
+// Trigger visible elements on intersect
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.feature-card, .proof-card, .stat-item, .faq-item').forEach(el => {
+  revealObserver.observe(el);
+});
+</script>
+
+</body>
+</html>
